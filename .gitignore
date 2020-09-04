@@ -15,3 +15,5 @@ generated/*
 *~
 
 .ipynb_checkpoints
+
+config.json

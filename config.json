@@ -1,4 +1,4 @@
 {
-  "data_AUDIO-WCM": "/home/swpffm/dev/barlow-morgenstern/03_MTD-medium/data_AUDIO-WCM",
-  "dir_mtd": "/home/swpffm/dev/barlow-morgenstern"
+  "data_AUDIO-WCM": "/dir/to/WCM",
+  "dir_mtd": "/dir/to/MTD"
 }
