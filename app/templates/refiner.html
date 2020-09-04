@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}Refine Warping Path ({{ mtd_id }}){% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="page-header">
+   <h1>
+    Refine Warping Path ({{ mtd_id }})
+   </h1>
+  </div>
+  {{ super() }}
+</div>
+
+<div class="container">
+   <a href="https://work.audiolabs.uni-erlangen.de/~fzalkow/barlow/theme/{{ mtd_id }}.html" class="btn btn-default" role="button">Barlow Website</a>
+    <a href="http://wcm.audiolabs.uni-erlangen.de/tracks/{{ wcm_id }}" class="btn btn-default" role="button">WCM Website</a>
+</div>
+
+<div style="padding-top: 25px;">
+</div>
+
+<div class="container">
+  <div class="row" id="canvasContainer">
+    <canvas id="picCanv">
+      Your browser does not support the HTML5 canvas tag.
+      <img id="picImg_wav" src="{{ img_src_wav }}">
+      <img id="picImg_mid" src="{{ img_src_mid }}">
+    </canvas>
+  </div>
+</div>
+
+<div style="padding-top: 25px;">
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-7">
+      <table class="table table-striped" width="100%">
+        <thead>
+          <tr>
+            <th style="width: 5%"></th>
+            <th style="width: 45%">Midi</th>
+            <th style="width: 5%"></th>
+            <th style="width: 45%">Audio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>original</td>
+            <td>
+              <audio controls style="width: 100%">
+                <source src="{{ audio_mid }}" type="audio/wav">
+                Your browser does not support the audio element.
+              </audio>
+            </td>
+            <td>audio only</td>
+            <td>
+              <audio controls style="width: 100%">
+                <source src="{{ audio_wav }}" type="audio/wav">
+                Your browser does not support the audio element.
+              </audio>
+            </td>
+          </tr>
+          <tr>
+            <td>aligned</td>
+            <td>
+              <audio controls style="width: 100%">
+                <source src="{{ audio_mid_align }}" type="audio/wav">
+                Your browser does not support the audio element.
+              </audio>
+            </td>
+            <td>left/right</td>
+            <td>
+              <audio controls style="width: 100%">
+                <source src="{{ audio_both }}" type="audio/wav">
+                Your browser does not support the audio element.
+              </audio>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-2">
+      <table class="table table-striped" width="100%">
+        <thead>
+          <tr>
+            <th>Vers.</th>
+            <th>Chroma</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="legend_modality"></td>
+            <td id="legend_chroma"></td>
+            <td id="legend_time"></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-3">
+      <div class="btn-group-vertical panel panel-default" style="width: 100%">
+        <!--<div class="panel-heading small">Actions</div>-->
+        <form action="{{ alignment_url }}" method="post" id="form_alignment">
+          <input name="alignment" value="" style="display:none;">
+          <input type="submit" class="btn btn-default" value="Process" style="width: 100%">
+        </form>
+        <a href="{{ linear_url }}" class="btn btn-default">Linearize</a>
+        <form action="{{ save_url }}" method="post" id="form_save">
+          <input name="alignment" value="" style="display:none;">
+          <input type="submit" class="btn btn-default" value="Save" style="width: 100%">
+        </form>
+      </div>
+
+      <div class="btn-group-vertical panel panel-default" style="width: 100%">
+        <div class="panel-heading small">Start and End of Audio Excerpt (in Seconds)</div>
+
+        <form action="{{ duration_url }}" method="post" id="form_duration">
+          <div class="input-group">
+            <input name="StartTime" id="StartTime" type="number" class="form-control input-sm" value="{{ wcm_start_time }}" step="0.1" min="0.0" max="{{ wcm_end_time }}"/>
+            <span class="input-group-btn" style="width: 0px;"></span>
+            <input name="EndTime" id="EndTime" type="number" class="form-control input-sm" value="{{ wcm_end_time }}" step="0.1" min="{{ wcm_start_time }}"  max="{{ wcm_duration }}"/>
+          </div>
+          <input type="submit" class="btn btn-default" value="Change times" style="width: 100%" {{ 'disabled' if duration_url == '#'}}>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.3/fabric.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+<style>
+#picCanv {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d3d3d3;
+}
+
+.panel-heading.small {
+  padding: 5px;
+}
+</style>
+
+<script>
+var matrix_scale_factor = {{ scale_fac }};
+var wp = {{ wp }};
+var feature_rate = {{ feature_rate }};
+</script>
+
+<script src="{{ url_for('static', filename='js/warping-path-refiner.js') }}"></script>
+{% endblock %}

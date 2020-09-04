@@ -1,0 +1,17 @@
+name: mtd-alignment-tool
+dependencies:
+- python==3.6.*
+- Flask==1.0.*
+- pandas==1.0.*
+- numpy==1.15.*
+- tqdm==4.28.*
+- ipython==7.2.*
+- Pillow==5.3.*
+- scipy==1.2.*
+- pip:
+  - Flask-Script==2.0.*
+  - Flask-Bootstrap==3.3.7.*
+  - Frozen-Flask==0.15
+  - pretty_midi==0.2.*
+  - pysoundfile==0.9.*
+  - librosa==0.8.*

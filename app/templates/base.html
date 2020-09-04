@@ -1,0 +1,48 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}MTD{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link href="/static/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/static/favicon.ico" rel="icon" type="image/x-icon"/>
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+ <div class="container">
+  <div class="navbar-header">
+   <a class="navbar-brand" href="{{ url_for('main.index') }}">
+    MTD
+   </a>
+  </div>
+  <div class="navbar-collapse collapse">
+   <ul class="nav navbar-nav">
+     <li><a href="{{ url_for('main.index') }}">Themes</a></li>
+   </ul>
+  </div>
+ </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-danger">
+      <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% endblock %}
+
+    {% block scripts %}
+    {{ super() }}
+    <!--<link rel="stylesheet" type="text/css" href="/static/buttons.css">-->
+    {% endblock %}

@@ -1,0 +1,17 @@
+__pycache__
+
+app/static/data_AUDIO_IIRT
+
+app/static/data_AUDIO_IIRT-annotated/*
+app/static/data_ALIGNMENT-annotated/*
+app/static/data_AUDIO-annotated/*
+!app/static/data_AUDIO_IIRT-annotated/.gitkeep
+!app/static/data_ALIGNMENT-annotated/.gitkeep
+!app/static/data_AUDIO-annotated/.gitkeep
+
+generated/*
+!generated/.gitkeep
+
+*~
+
+.ipynb_checkpoints

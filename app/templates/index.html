@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}MTD Home{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+{{ super() }}
+<div class="page-header">
+ <h1>
+  MTD Theme Alignment Refiner
+ </h1>
+</div>
+
+{% include 'theme_table.html' %}
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready( function () {
+      var table = $("table.table").DataTable({
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+      });
+      $("table.table").show();
+  });
+</script>
+{% endblock %}
