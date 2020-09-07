@@ -26,7 +26,7 @@ https://www.audiolabs-erlangen.de/resources/MIR/MTD
 conda env create -f environment.yml
 conda activate mtd-alignment-tool
 
-python prepare_features.py
+python 01_prepare_features.py
 
 python manage.py run
 ```
@@ -39,7 +39,8 @@ The first type of modification affects the alignments. After editing and saving 
 you find CSV files for each saved alignment in the following directory: `app/static/data_ALIGNMENT-annotated`.
 
 The second type of modification concerns the metadata. In particular, you may change the start and end time positions of the theme
- occurrences, as well as transpositions. To obtain these results, you have to execute the script:
+ occurrences.
+Furhermore, you may edit transpositions by editing the file `app/static/transposition_corrected.json` or other metadata by editing the file `app/static/03_MTD-medium_new.csv`. To obtain these results, you have to execute the script:
 ```bash
 python 02_use_updates.py
 ```
