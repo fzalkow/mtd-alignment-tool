@@ -4,9 +4,12 @@ The repository contains code for an alignment tool used when curating the Musica
 not a general-purpose product, but its source code may be useful for the MTD users who want to further refine the
 alignments or add further themes to the dataset. The MTD is described in the following paper.
 
+```
 Frank Zalkow, Stefan Balke, Vlora Arifi-Müller, and Meinard Müller
 MTD: A Multimodal Dataset of Musical Themes for MIR Research
-Transactions of the International Society for Music Information Retrieval (TISMIR), 2020, under review.
+Transactions of the International Society for Music Information Retrieval (TISMIR), 3(1): 180–192, 2020.
+https://dx.doi.org/10.5334/tismir.68
+```
 
 The following website accompanies the paper and presents all links for accessing the MTD.
 
